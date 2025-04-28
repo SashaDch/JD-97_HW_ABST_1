@@ -16,11 +16,12 @@ public abstract class Account {
     }
 
     public boolean transfer(Account account, long amount) {
+        long temp = this.amount;
         if (!this.pay(amount)) {
             return false;
         }
         if (!account.add(amount)) {
-            this.add(amount);
+            this.amount = temp;
             return false;
         }
         return true;
